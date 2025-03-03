@@ -1,0 +1,56 @@
+{
+  "name": "alka-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint:eslint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.mts --config eslint.config.js",
+    "lint:stylelint": "stylelint '**/*.{sass,scss,css}' --config stylelint.config.js",
+    "lint": "pnpm run lint:eslint && pnpm run lint:stylelint"
+  },
+  "engines": {
+    "node": ">=22.6.0"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "next": "^15.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@eslint/compat": "^1.2.7",
+    "@eslint/eslintrc": "^3.3.0",
+    "@eslint/js": "^9.21.0",
+    "@next/eslint-plugin-next": "*",
+    "@tailwindcss/postcss": "^4.0.9",
+    "@types/eslint-config-prettier": "^6.11.3",
+    "@types/node": "^22.13.8",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "eslint": "^9.21.0",
+    "eslint-config-next": "^15.2.0",
+    "eslint-config-prettier": "^10.0.2",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-react-hooks": "*",
+    "postcss": "^8.5.3",
+    "prettier": "^3.5.3",
+    "prettier-plugin-sort-imports": "^1.8.6",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "sass": "^1.85.1",
+    "stylelint": "^16.15.0",
+    "stylelint-config-standard-scss": "^14.0.0",
+    "stylelint-prettier": "^5.0.3",
+    "tailwindcss": "^4.0.9",
+    "typescript": "~5.7.3",
+    "typescript-eslint": "*"
+  },
+  "packageManager": "pnpm@10.5.2",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp"
+    ]
+  }
+}

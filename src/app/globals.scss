@@ -1,0 +1,30 @@
+@import 'tailwindcss';
+
+@layer base {
+  html {
+    /* 禁用触摸高亮 */
+    -webkit-tap-highlight-color: transparent;
+
+    /* 改善触摸体验 */
+    touch-action: manipulation;
+
+    /* 默认禁用文本选择 */
+    user-select: none;
+  }
+
+  :root {
+    color-scheme: dark light;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: safe center;
+    align-items: safe center;
+  }
+
+  @media (prefers-color-scheme: light) {
+    /* Light mode styles */
+  }
+}
