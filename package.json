@@ -12,7 +12,7 @@
     "lint": "pnpm run lint:eslint && pnpm run lint:stylelint"
   },
   "engines": {
-    "node": ">=22.6.0"
+    "node": "^22.6.0"
   },
   "dependencies": {
     "clsx": "^2.1.1",
