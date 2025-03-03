@@ -9,7 +9,8 @@
     "start": "next start",
     "lint:eslint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs,.mts --config eslint.config.js",
     "lint:stylelint": "stylelint '**/*.{sass,scss,css}' --config stylelint.config.js",
-    "lint": "pnpm run lint:eslint && pnpm run lint:stylelint"
+    "lint:tsc": "tsc --noEmit",
+    "lint": "pnpm run lint:eslint && pnpm run lint:stylelint && pnpm run lint:tsc"
   },
   "engines": {
     "node": "^22.6.0"
