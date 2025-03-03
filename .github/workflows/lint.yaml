@@ -24,6 +24,7 @@ jobs:
       - uses: ./.github/actions/setup-project
         with:
           node-version: '22.x'
+          pnpm-version: '10.5.2'
       - name: ESLint
         run: pnpm run lint:eslint
 
@@ -35,6 +36,7 @@ jobs:
       - uses: ./.github/actions/setup-project
         with:
           node-version: '22.x'
+          pnpm-version: '10.5.2'
       - name: Stylelint
         run: pnpm run lint:stylelint
 
@@ -46,5 +48,6 @@ jobs:
       - uses: ./.github/actions/setup-project
         with:
           node-version: '22.x'
+          pnpm-version: '10.5.2'
       - name: TypeScript type checking
         run: pnpm run lint:tsc
