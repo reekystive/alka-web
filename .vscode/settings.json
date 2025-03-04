@@ -1,5 +1,12 @@
 {
-  "cSpell.words": ["alka", "clsx", "SMIL", "SVGSVGElement", "vercel"],
+  "cSpell.words": [
+    "alka",
+    "clsx",
+    "SMIL",
+    "SVGSVGElement",
+    "turbopack",
+    "vercel"
+  ],
   "files.associations": {
     "*.css": "tailwindcss"
   },
