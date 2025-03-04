@@ -3,7 +3,6 @@
     "dbaeumer.vscode-eslint",
     "editorconfig.editorconfig",
     "stylelint.vscode-stylelint",
-    "bradlc.vscode-tailwindcss",
-    "mrmlnc.vscode-scss"
+    "bradlc.vscode-tailwindcss"
   ]
 }
