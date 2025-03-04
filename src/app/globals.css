@@ -1,5 +1,19 @@
 @import 'tailwindcss';
 
+@theme {
+  --color-well-read-50: #fdf3f3;
+  --color-well-read-100: #fde3e4;
+  --color-well-read-200: #fbcdce;
+  --color-well-read-300: #f8a9ac;
+  --color-well-read-400: #f1787c;
+  --color-well-read-500: #e64d52;
+  --color-well-read-600: #d32f34;
+  --color-well-read-700: #c1272c;
+  --color-well-read-800: #932125;
+  --color-well-read-900: #7a2225;
+  --color-well-read-950: #420d0f;
+}
+
 @layer base {
   html {
     /* 禁用触摸高亮 */
