@@ -5,12 +5,7 @@ const config = {
   extends: ['stylelint-config-standard'],
   rules: {
     'prettier/prettier': true,
-    'at-rule-no-unknown': [
-      true,
-      {
-        ignoreAtRules: ['tailwind', 'apply', 'variants', 'responsive', 'screen'],
-      },
-    ],
+    'import-notation': 'string',
   },
 };
 
