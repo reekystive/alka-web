@@ -25,5 +25,6 @@
   "[javascriptreact]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "editor.formatOnSave": true
-  }
+  },
+  "stylelint.validate": ["css", "postcss", "tailwindcss"]
 }

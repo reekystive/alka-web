@@ -1,4 +1,3 @@
-import { Button } from '@/components/button';
 import {
   Drawer,
   DrawerTrigger,
@@ -8,6 +7,7 @@ import {
   DrawerTitle,
   DrawerDescription,
 } from '@/components/drawer';
+import { Button } from '@/components/button';
 
 export default function Demo() {
   return (
@@ -111,9 +111,7 @@ export default function Demo() {
                   <DrawerContent>
                     <DrawerHeader>
                       <DrawerTitle>底部抽屉</DrawerTitle>
-                      <DrawerDescription>
-                        这是一个从底部滑出的抽屉组件，常用于移动端。
-                      </DrawerDescription>
+                      <DrawerDescription>这是一个从底部滑出的抽屉组件，常用于移动端。</DrawerDescription>
                     </DrawerHeader>
                     <div className="p-4">
                       <p>抽屉的主要内容区域</p>
@@ -133,9 +131,7 @@ export default function Demo() {
                   <DrawerContent>
                     <DrawerHeader>
                       <DrawerTitle>右侧抽屉</DrawerTitle>
-                      <DrawerDescription>
-                        这是一个从右侧滑出的抽屉组件，常用于桌面端。
-                      </DrawerDescription>
+                      <DrawerDescription>这是一个从右侧滑出的抽屉组件，常用于桌面端。</DrawerDescription>
                     </DrawerHeader>
                     <div className="p-4">
                       <p>抽屉的主要内容区域</p>
@@ -155,9 +151,7 @@ export default function Demo() {
                   <DrawerContent>
                     <DrawerHeader>
                       <DrawerTitle>左侧抽屉</DrawerTitle>
-                      <DrawerDescription>
-                        这是一个从左侧滑出的抽屉组件，常用于导航菜单。
-                      </DrawerDescription>
+                      <DrawerDescription>这是一个从左侧滑出的抽屉组件，常用于导航菜单。</DrawerDescription>
                     </DrawerHeader>
                     <div className="p-4">
                       <p>抽屉的主要内容区域</p>
@@ -177,9 +171,7 @@ export default function Demo() {
                   <DrawerContent>
                     <DrawerHeader>
                       <DrawerTitle>顶部抽屉</DrawerTitle>
-                      <DrawerDescription>
-                        这是一个从顶部滑出的抽屉组件，适用于特殊场景。
-                      </DrawerDescription>
+                      <DrawerDescription>这是一个从顶部滑出的抽屉组件，适用于特殊场景。</DrawerDescription>
                     </DrawerHeader>
                     <div className="p-4">
                       <p>抽屉的主要内容区域</p>
@@ -205,18 +197,12 @@ export default function Demo() {
                   <DrawerContent>
                     <DrawerHeader>
                       <DrawerTitle>表单示例</DrawerTitle>
-                      <DrawerDescription>
-                        这是一个包含表单的抽屉示例。
-                      </DrawerDescription>
+                      <DrawerDescription>这是一个包含表单的抽屉示例。</DrawerDescription>
                     </DrawerHeader>
                     <div className="p-4 space-y-4">
                       <div className="space-y-2">
                         <label className="text-sm font-medium">用户名</label>
-                        <input
-                          type="text"
-                          className="w-full px-3 py-2 border rounded-md"
-                          placeholder="请输入用户名"
-                        />
+                        <input type="text" className="w-full px-3 py-2 border rounded-md" placeholder="请输入用户名" />
                       </div>
                       <div className="space-y-2">
                         <label className="text-sm font-medium">密码</label>
@@ -243,17 +229,12 @@ export default function Demo() {
                   <DrawerContent>
                     <DrawerHeader>
                       <DrawerTitle>列表示例</DrawerTitle>
-                      <DrawerDescription>
-                        这是一个包含列表的抽屉示例。
-                      </DrawerDescription>
+                      <DrawerDescription>这是一个包含列表的抽屉示例。</DrawerDescription>
                     </DrawerHeader>
                     <div className="p-4">
                       <ul className="space-y-2">
                         {Array.from({ length: 5 }).map((_, i) => (
-                          <li
-                            key={i}
-                            className="p-3 rounded-lg bg-muted flex items-center justify-between"
-                          >
+                          <li key={i} className="p-3 rounded-lg bg-muted flex items-center justify-between">
                             <span>列表项 {i + 1}</span>
                             <Button variant="ghost" size="sm">
                               操作
