@@ -9,7 +9,13 @@ const config = {
     'at-rule-no-unknown': [
       true,
       {
-        ignoreAtRules: ['theme'],
+        ignoreAtRules: ['theme', 'plugin', 'custom-variant', 'apply'],
+      },
+    ],
+    'at-rule-no-deprecated': [
+      true,
+      {
+        ignoreAtRules: ['apply'],
       },
     ],
   },
