@@ -6,6 +6,12 @@ const config = {
   rules: {
     'prettier/prettier': true,
     'import-notation': 'string',
+    'at-rule-no-unknown': [
+      true,
+      {
+        ignoreAtRules: ['theme'],
+      },
+    ],
   },
 };
 
