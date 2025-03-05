@@ -1,18 +1,10 @@
 {
-  "cSpell.words": [
-    "alka",
-    "clsx",
-    "SMIL",
-    "SVGSVGElement",
-    "turbopack",
-    "vercel"
-  ],
   "files.associations": {
     "*.css": "tailwindcss"
   },
   "editor.tabSize": 2,
   "editor.rulers": [80, 120],
-  "cSpell.ignorePaths": ["pnpm-lock.yaml", "node_modules", ".vscode", ".next"],
+  "cSpell.ignorePaths": ["pnpm-lock.yaml", "node_modules", ".vscode", ".next", "src"],
   "eslint.format.enable": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",

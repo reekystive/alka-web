@@ -1,5 +1,6 @@
 import eslintConfigPrettier from 'eslint-config-prettier';
 import prettierPlugin from 'eslint-plugin-prettier';
+import cspellPlugin from '@cspell/eslint-plugin';
 import { FlatCompat } from '@eslint/eslintrc';
 import tsEslint from 'typescript-eslint';
 import eslintJsPlugin from '@eslint/js';
@@ -35,6 +36,20 @@ const eslintConfig = [
     extends: ['next', 'next/core-web-vitals', 'next/typescript'],
   }),
   ...typescriptConfigs,
+  {
+    plugins: { '@cspell': /** @type {any} */ (cspellPlugin) },
+    rules: {
+      '@cspell/spellchecker': [
+        'error',
+        /** @type {import('@cspell/eslint-plugin').Options} */ ({
+          autoFix: true,
+          generateSuggestions: true,
+          numSuggestions: 3,
+          configFile: new URL('./cspell.config.yaml', import.meta.url).toString(),
+        }),
+      ],
+    },
+  },
   eslintConfigPrettier,
   {
     plugins: {
