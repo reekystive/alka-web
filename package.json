@@ -50,8 +50,7 @@
   "packageManager": "pnpm@10.5.2",
   "pnpm": {
     "onlyBuiltDependencies": [
-      "sharp",
-      "@parcel/watcher"
+      "sharp"
     ]
   }
 }
