@@ -1,0 +1,13 @@
+#yaml-language-server: $schema=https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json
+words:
+  - alka
+  - clsx
+  - SMIL
+  - SVGSVGElement
+  - turbopack
+  - vercel
+ignorePaths:
+  - node_modules
+  - pnpm-lock.yaml
+  - cspell.config.yaml
+  - .next
