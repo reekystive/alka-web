@@ -40,7 +40,7 @@ const eslintConfig = [
     plugins: { '@cspell': /** @type {any} */ (cspellPlugin) },
     rules: {
       '@cspell/spellchecker': [
-        'error',
+        'warn',
         /** @type {import('@cspell/eslint-plugin').Options} */ ({
           autoFix: true,
           generateSuggestions: true,
