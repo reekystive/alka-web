@@ -1,13 +1,14 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
+import '@/localization/init';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Alka',
-  description: 'Alka web app.',
+  title: 'Alka Web',
+  description: 'Alka Web Application',
 };
 
 export const viewport: Viewport = {
