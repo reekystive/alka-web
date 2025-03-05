@@ -6,6 +6,7 @@ words:
   - SVGSVGElement
   - turbopack
   - vercel
+  - vaul
 ignorePaths:
   - node_modules
   - pnpm-lock.yaml
