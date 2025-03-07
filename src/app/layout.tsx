@@ -31,7 +31,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(inter.className, 'h-[100dvh] w-[100dvw] overflow-clip overscroll-none')}>
+      <body className={cn(inter.className, 'h-[100dvh] w-[100dvw] overflow-clip antialiased')}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <>
             <ThemeEffect />
