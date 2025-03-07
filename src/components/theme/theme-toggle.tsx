@@ -9,31 +9,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { setDocumentTheme } from './document-theme';
 import { Button } from '@/components/ui/button';
-import { FC, useEffect } from 'react';
-
-const getTheme = (theme: string) => {
-  switch (theme) {
-    case 'light':
-      return 'light';
-    case 'dark':
-      return 'dark';
-    default:
-      throw new Error(`Invalid theme: ${theme}`);
-  }
-};
+import { FC } from 'react';
 
 export const ThemeToggle: FC = () => {
-  const { setTheme, resolvedTheme } = useTheme();
-
-  useEffect(() => {
-    if (!resolvedTheme || resolvedTheme === 'system') {
-      return;
-    }
-    const theme = getTheme(resolvedTheme);
-    setDocumentTheme(theme);
-  }, [resolvedTheme]);
+  const { setTheme } = useTheme();
 
   return (
     <DropdownMenu>
