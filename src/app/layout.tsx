@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
-import './globals.css';
+import '@/app/globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,13 +25,8 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className="dark">
-      <body
-        className={`bg-well-read-50 text-slate-950
-        dark:bg-well-read-950 dark:text-well-read-100 ${inter.className}`}
-      >
-        {children}
-      </body>
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
