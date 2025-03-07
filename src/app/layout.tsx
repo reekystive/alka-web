@@ -1,6 +1,8 @@
 import { ThemeProvider } from '@/components/theme/theme-provider';
+import { ThemeEffect } from '@/components/theme/theme-effect';
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
+import { cn } from '@/utils/component';
 import { ReactNode } from 'react';
 import '@/app/globals.css';
 
@@ -27,9 +29,12 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={cn(inter.className, 'h-screen overflow-clip')}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {children}
+          <>
+            <ThemeEffect />
+            {children}
+          </>
         </ThemeProvider>
       </body>
     </html>
