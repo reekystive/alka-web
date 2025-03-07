@@ -6,8 +6,8 @@ import {
   DrawerFooter,
   DrawerTitle,
   DrawerDescription,
-} from '@/components/drawer';
-import { Button } from '@/components/button';
+} from '@/components/ui/drawer';
+import { Button } from '@/components/ui/button';
 
 export default function Demo() {
   return (
