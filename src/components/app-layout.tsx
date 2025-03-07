@@ -13,7 +13,7 @@
  * and a bottom navigation bar on mobile devices.
  */
 
-import { Calendar, History, Settings } from 'lucide-react';
+import { Beef, Calendar, History, Settings, User } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/utils/component';
 import { FC, ReactNode } from 'react';
@@ -32,6 +32,129 @@ interface TabItem {
   icon: ReactNode;
   path: string;
 }
+
+/**
+ * Props for the NavTab component
+ */
+interface NavTabProps {
+  tab: TabItem;
+  variant: 'desktop' | 'mobile';
+  pathname: string;
+}
+
+/**
+ * NavTab component renders a single navigation tab
+ */
+const NavTab: FC<NavTabProps> = ({ tab, variant, pathname }) => {
+  /**
+   * Determines if a navigation path is currently active
+   */
+  const isActive = () => {
+    if (tab.path === '/' && pathname === '/') return true;
+    if (tab.path !== '/' && pathname.startsWith(tab.path)) return true;
+    return false;
+  };
+
+  if (variant === 'desktop') {
+    return (
+      <Link
+        href={tab.path}
+        className={cn(
+          'flex items-center gap-3 px-4 py-3 rounded-md transition-colors',
+          'text-sidebar-foreground opacity-50',
+          { 'hover:opacity-80': !isActive() },
+          { 'bg-sidebar-accent opacity-100 hover:opacity-100': isActive() }
+        )}
+      >
+        {tab.icon}
+        <span>{tab.label}</span>
+      </Link>
+    );
+  }
+
+  return (
+    <Link
+      href={tab.path}
+      className={cn(
+        'text-sidebar-foreground opacity-40 hover:opacity-80',
+        'transition-colors text-xs',
+        'pb-[env(safe-area-inset-bottom)]',
+        { 'opacity-100': isActive() }
+      )}
+    >
+      <div className="w-full h-full flex flex-col items-center justify-center">
+        {tab.icon}
+        <span className="mt-1">{tab.label}</span>
+      </div>
+    </Link>
+  );
+};
+
+/**
+ * Props for the DesktopSidebar component
+ */
+interface DesktopSidebarProps {
+  tabs: TabItem[];
+  pathname: string;
+}
+
+/**
+ * DesktopSidebar component renders the sidebar navigation for desktop view
+ */
+const DesktopSidebar: FC<DesktopSidebarProps> = ({ tabs, pathname }) => {
+  return (
+    <nav className="hidden md:flex flex-col w-56 h-full border-r bg-sidebar">
+      <div className="px-5 py-4 flex flex-row items-center gap-2">
+        <Beef className="size-6" />
+        <h1 className="text-xl font-semibold text-sidebar-foreground">EatWise</h1>
+      </div>
+      <hr className="h-[1px] bg-sidebar-accent" />
+      <div className="flex flex-col flex-1 p-2 gap-2 overflow-y-auto">
+        {tabs.map((tab) => (
+          <NavTab key={tab.id} tab={tab} pathname={pathname} variant="desktop" />
+        ))}
+      </div>
+      <div className="px-5 py-4 flex flex-row items-center gap-2">
+        <div className="rounded-full bg-sidebar-accent p-2">
+          <User className="size-5" />
+        </div>
+        <div className="text-sm text-sidebar-foreground">John Doe</div>
+      </div>
+    </nav>
+  );
+};
+
+/**
+ * Props for the MobileNavBar component
+ */
+interface MobileNavBarProps {
+  tabs: TabItem[];
+  pathname: string;
+}
+
+/**
+ * MobileNavBar component renders the bottom navigation bar for mobile view
+ */
+const MobileNavBar: FC<MobileNavBarProps> = ({ tabs, pathname }) => {
+  return (
+    <nav className="fixed md:hidden h-[calc(56px+env(safe-area-inset-bottom))] border-t-[1px] box-content bg-sidebar bottom-0 left-0 right-0 touch-none shrink-0 grow-0">
+      <div className="h-full w-full grid grid-cols-3 items-stretch justify-center">
+        {tabs.map((tab) => (
+          <NavTab key={tab.id} tab={tab} pathname={pathname} variant="mobile" />
+        ))}
+      </div>
+    </nav>
+  );
+};
+
+/**
+ * MobileNavBarPlaceholder's height should be exactly the same as the MobileNavBar
+ */
+const MobileNavBarPlaceholder: FC = () => {
+  return (
+    <div className="md:hidden h-[calc(56px+env(safe-area-inset-bottom))] border-t-[1px] box-content invisible shrink-0 grow-0" />
+  );
+};
 
 /**
  * Props for the AppLayout component
@@ -68,66 +191,14 @@ export const AppLayout: FC<AppLayoutProps> = ({ children }) => {
     },
   ];
 
-  /**
-   * Determines if a navigation path is currently active
-   * @param path - The path to check against the current URL
-   * @returns true if the path is active, false otherwise
-   */
-  const isActive = (path: string) => {
-    if (path === '/' && pathname === '/') return true;
-    if (path !== '/' && pathname.startsWith(path)) return true;
-    return false;
-  };
-
   return (
-    <div className="flex flex-col md:flex-row h-screen w-full overflow-hidden">
-      {/* Desktop sidebar navigation */}
-      <nav className="hidden md:flex flex-col w-64 h-full border-r bg-sidebar">
-        <div className="p-4 border-b">
-          <h1 className="text-xl font-bold text-sidebar-foreground">EatWise</h1>
-        </div>
-        <div className="flex flex-col flex-1 p-2 space-y-1">
-          {tabs.map((tab) => (
-            <Link
-              key={tab.id}
-              href={tab.path}
-              className={cn(
-                'flex items-center gap-3 px-4 py-3 rounded-lg transition-colors',
-                'text-sidebar-foreground/70 hover:text-sidebar-foreground',
-                'hover:bg-sidebar-accent/50',
-                isActive(tab.path) && 'bg-sidebar-accent text-sidebar-foreground font-medium'
-              )}
-            >
-              {tab.icon}
-              <span>{tab.label}</span>
-            </Link>
-          ))}
-        </div>
-      </nav>
-
-      {/* Main content area */}
-      <main className="flex-1 flex flex-col h-full overflow-hidden">
-        <div className="flex-1 overflow-y-auto">{children}</div>
-
-        {/* Mobile bottom navigation bar */}
-        <nav className="md:hidden flex items-center justify-around border-t bg-sidebar p-1">
-          {tabs.map((tab) => (
-            <Link
-              key={tab.id}
-              href={tab.path}
-              className={cn(
-                'flex flex-col items-center justify-center py-2 px-3 rounded-lg',
-                'text-sidebar-foreground/70 hover:text-sidebar-foreground',
-                'transition-colors text-xs',
-                isActive(tab.path) && 'bg-sidebar-accent text-sidebar-foreground font-medium'
-              )}
-            >
-              {tab.icon}
-              <span className="mt-1">{tab.label}</span>
-            </Link>
-          ))}
-        </nav>
+    <div className="flex flex-col md:flex-row h-full w-full overflow-clip relative">
+      <DesktopSidebar tabs={tabs} pathname={pathname} />
+      <main className="flex-1 flex flex-col h-full overflow-clip">
+        <div className="flex-1 w-full flex flex-col justify-center items-center min-h-0">{children}</div>
+        <MobileNavBarPlaceholder />
       </main>
+      <MobileNavBar tabs={tabs} pathname={pathname} />
     </div>
   );
 };
