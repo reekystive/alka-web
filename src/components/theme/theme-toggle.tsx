@@ -1,6 +1,7 @@
 'use client';
 
-import { Moon, Sun } from 'lucide-react';
+import { Laptop, Moon, Sun } from 'lucide-react';
+import { useEffect, useState, FC } from 'react';
 import { useTheme } from 'next-themes';
 
 import {
@@ -10,17 +11,39 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-import { FC } from 'react';
+import { cn } from '@/utils/component';
 
 export const ThemeToggle: FC = () => {
-  const { setTheme } = useTheme();
+  const { setTheme, theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        <Button className="relative" variant="outline" size="icon">
+          {mounted ? (
+            <>
+              <Sun
+                className={cn('h-[1.2rem] w-[1.2rem] absolute opacity-0', {
+                  'opacity-100': theme === 'light',
+                })}
+              />
+              <Moon
+                className={cn('h-[1.2rem] w-[1.2rem] absolute opacity-0', {
+                  'opacity-100': theme === 'dark',
+                })}
+              />
+              <Laptop
+                className={cn('h-[1.2rem] w-[1.2rem] absolute opacity-0', {
+                  'opacity-100': theme === 'system',
+                })}
+              />
+            </>
+          ) : null}
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
