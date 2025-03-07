@@ -13,10 +13,10 @@
  * and a bottom navigation bar on mobile devices.
  */
 
-import { Beef, Calendar, History, Settings, User } from 'lucide-react';
+import { Beef, Calendar, Compass, History, Settings, User } from 'lucide-react';
+import { FC, ReactNode, useMemo } from 'react';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/utils/component';
-import { FC, ReactNode } from 'react';
 import Link from 'next/link';
 
 /**
@@ -103,7 +103,7 @@ interface DesktopSidebarProps {
  */
 const DesktopSidebar: FC<DesktopSidebarProps> = ({ tabs, pathname }) => {
   return (
-    <nav className="hidden md:flex flex-col w-56 h-full border-r bg-sidebar">
+    <nav className="hidden md:flex flex-col w-56 h-full border-r bg-sidebar shrink-0 grow-0">
       <div className="px-5 py-4 flex flex-row items-center gap-2">
         <Beef className="size-6" />
         <h1 className="text-xl font-semibold text-sidebar-foreground">EatWise</h1>
@@ -138,7 +138,10 @@ interface MobileNavBarProps {
 const MobileNavBar: FC<MobileNavBarProps> = ({ tabs, pathname }) => {
   return (
     <nav className="fixed md:hidden h-[calc(56px+env(safe-area-inset-bottom))] border-t-[1px] box-content bg-sidebar bottom-0 left-0 right-0 touch-none shrink-0 grow-0">
-      <div className="h-full w-full grid grid-cols-3 items-stretch justify-center">
+      <div
+        className={`h-full w-full grid items-stretch justify-center`}
+        style={useMemo(() => ({ gridTemplateColumns: `repeat(${tabs.length}, 1fr)` }), [tabs.length])}
+      >
         {tabs.map((tab) => (
           <NavTab key={tab.id} tab={tab} pathname={pathname} variant="mobile" />
         ))}
@@ -178,6 +181,12 @@ export const AppLayout: FC<AppLayoutProps> = ({ children }) => {
       path: '/',
     },
     {
+      id: 'discover',
+      label: '发现',
+      icon: <Compass className="size-5" />,
+      path: '/discover',
+    },
+    {
       id: 'history',
       label: '历史',
       icon: <History className="size-5" />,
@@ -194,7 +203,7 @@ export const AppLayout: FC<AppLayoutProps> = ({ children }) => {
   return (
     <div className="flex flex-col md:flex-row h-full w-full overflow-clip relative">
       <DesktopSidebar tabs={tabs} pathname={pathname} />
-      <main className="flex-1 flex flex-col h-full overflow-clip">
+      <main className="flex-1 flex flex-col h-full overflow-clip min-w-0">
         <div className="flex-1 w-full flex flex-col justify-center items-center min-h-0">{children}</div>
         <MobileNavBarPlaceholder />
       </main>
