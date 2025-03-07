@@ -1,5 +1,16 @@
 import type { MetadataRoute } from 'next';
 
+/**
+ * manifest is generated on the server side, so we can't get the current theme (dark or light) here
+ *
+ * don't set a default background_color and theme_color otherwise page will flicker
+ * when the user selected theme is loaded in client side
+ *
+ * leave them empty to use user-agent defined title bar color and then update them in client code
+ *
+ * meta tag is updated in src/components/theme/theme-toggle.tsx
+ */
+
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'EatWise',
@@ -7,8 +18,6 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'EatWise web app.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#420d0f',
-    theme_color: '#420d0f',
     icons: [
       {
         src: '/web-app-manifest-192x192.png',

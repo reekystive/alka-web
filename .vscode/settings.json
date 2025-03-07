@@ -35,5 +35,6 @@
     "editor.formatOnSave": true
   },
   "stylelint.validate": ["css", "postcss", "tailwindcss"],
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.preferences.importModuleSpecifierEnding": "minimal"
 }

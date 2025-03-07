@@ -1,9 +1,10 @@
+import { ThemeToggle } from '@/components/theme/theme-toggle';
 import { FC } from 'react';
-
 const Home: FC = () => {
   return (
     <main className="px-8 py-4 max-w-screen-lg flex flex-col justify-center items-center">
       <h1 className="text-2xl font-bold">EatWise</h1>
+      <ThemeToggle />
       <p className="text-sm">EatWise web app.</p>
       <p>
         {/* cspell:disable */}
