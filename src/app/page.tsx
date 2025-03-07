@@ -1,22 +1,29 @@
-import { ThemeToggle } from '@/components/theme/theme-toggle';
+import { AppLayout } from '@/components/app-layout';
 import { FC } from 'react';
-const Home: FC = () => {
+
+const HomePage: FC = () => {
   return (
-    <main className="px-8 py-4 max-w-screen-lg flex flex-col justify-center items-center">
-      <h1 className="text-2xl font-bold">EatWise</h1>
-      <ThemeToggle />
-      <p className="text-sm">EatWise web app.</p>
-      <p>
-        {/* cspell:disable */}
-        Id nisi adipisicing aute laborum consequat nostrud quis officia consectetur esse et aliqua. Anim ea
-        reprehenderit pariatur occaecat anim amet sint et dolore excepteur labore ipsum dolor. Irure reprehenderit
-        proident tempor elit nostrud consequat adipisicing occaecat sint aliqua Lorem ullamco mollit. Proident non ad
-        aliquip magna tempor est duis deserunt adipisicing proident excepteur. Consequat reprehenderit labore mollit
-        consequat esse velit. Officia ea laborum adipisicing ullamco occaecat ea aute.
-        {/* cspell:enable */}
-      </p>
-    </main>
+    <AppLayout>
+      <div className="container mx-auto p-6">
+        <h1 className="text-2xl font-bold mb-6">今日</h1>
+        <div className="space-y-6">
+          <div className="bg-card rounded-lg p-6 shadow-sm border">
+            <h2 className="text-xl font-semibold mb-4">今日摄入</h2>
+            <div className="h-64 bg-muted/30 rounded-lg flex items-center justify-center">今日数据图表区域</div>
+          </div>
+
+          <div className="bg-card rounded-lg p-6 shadow-sm border">
+            <h2 className="text-xl font-semibold mb-4">营养摄入分析</h2>
+            <div className="space-y-4">
+              <div className="p-4 bg-muted/30 rounded-lg">营养素分析 1</div>
+              <div className="p-4 bg-muted/30 rounded-lg">营养素分析 2</div>
+              <div className="p-4 bg-muted/30 rounded-lg">营养素分析 3</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </AppLayout>
   );
 };
 
-export default Home;
+export default HomePage;
