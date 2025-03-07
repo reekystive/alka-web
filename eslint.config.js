@@ -59,6 +59,11 @@ const eslintConfig = [
       'prettier/prettier': 'error',
     },
   },
+  {
+    rules: {
+      '@typescript-eslint/restrict-template-expressions': ['error', { allowNumber: true }],
+    },
+  },
 ];
 
 export default eslintConfig;
