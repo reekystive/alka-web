@@ -2,9 +2,9 @@ import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Alka',
-    short_name: 'Alka',
-    description: 'Alka web app.',
+    name: 'EatWise',
+    short_name: 'EatWise',
+    description: 'EatWise web app.',
     start_url: '/',
     display: 'standalone',
     background_color: '#420d0f',
