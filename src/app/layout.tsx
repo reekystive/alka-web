@@ -6,8 +6,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Alka',
-  description: 'Alka web app.',
+  title: 'EatWise',
+  description: 'EatWise web app.',
 };
 
 export const viewport: Viewport = {

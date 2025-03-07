@@ -3,8 +3,8 @@ import { FC } from 'react';
 const Home: FC = () => {
   return (
     <main className="px-8 py-4 max-w-screen-lg flex flex-col justify-center items-center">
-      <h1 className="text-2xl font-bold">Alka</h1>
-      <p className="text-sm">Alka web app.</p>
+      <h1 className="text-2xl font-bold">EatWise</h1>
+      <p className="text-sm">EatWise web app.</p>
       <p>
         {/* cspell:disable */}
         Id nisi adipisicing aute laborum consequat nostrud quis officia consectetur esse et aliqua. Anim ea
