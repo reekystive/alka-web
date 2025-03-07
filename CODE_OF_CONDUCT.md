@@ -107,3 +107,12 @@ fix: 🐛 something is not working
 1. 使用 `pnpm dev` 启动开发服务器（使用 Turbopack）
 2. 编写代码并确保通过所有 lint 检查
 3. 提交前运行 `pnpm lint` 确保代码质量
+
+## 开发规范
+
+- 确保同时兼容 Android, iOS, Windows, macOS, Linux 平台
+- 确保同时兼容 Chrome, Safari, Firefox 浏览器
+- 确保在 PWA 中表现良好 (包括移动端和桌面端)
+- 确保符合 WCAG, A11y, SEO, PWA, Web 规范
+- 无需过多考虑旧版本浏览器的兼容性问题
+- 确保代码符合 TypeScript 最佳实践, 避免使用 any 和 as，需要时可以用 unknown 和 never 代替
