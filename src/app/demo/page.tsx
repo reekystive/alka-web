@@ -11,8 +11,8 @@ import { Button } from '@/components/ui/button';
 
 export default function Demo() {
   return (
-    <div className="container w-full h-full overflow-auto overscroll-contain">
-      <div className="container mx-auto px-4 py-16 space-y-16 max-w-[1200px]">
+    <div className="container h-full w-full overflow-auto overscroll-contain">
+      <div className="container mx-auto max-w-[1200px] space-y-16 px-4 py-16">
         {/* 页面标题 */}
         <div className="space-y-3">
           <h1 className="text-4xl font-bold tracking-tight">组件展示 </h1>
@@ -30,7 +30,7 @@ export default function Demo() {
           <div className="space-y-8">
             <div className="space-y-4">
               <h3 className="text-xl font-medium">变体 Variants</h3>
-              <div className="flex flex-wrap gap-6 items-center">
+              <div className="flex flex-wrap items-center gap-6">
                 <Button variant="default">Default</Button>
                 <Button variant="destructive">Destructive</Button>
                 <Button variant="outline">Outline</Button>
@@ -199,16 +199,16 @@ export default function Demo() {
                       <DrawerTitle>表单示例</DrawerTitle>
                       <DrawerDescription>这是一个包含表单的抽屉示例。</DrawerDescription>
                     </DrawerHeader>
-                    <div className="p-4 space-y-4">
+                    <div className="space-y-4 p-4">
                       <div className="space-y-2">
                         <label className="text-sm font-medium">用户名</label>
-                        <input type="text" className="w-full px-3 py-2 border rounded-md" placeholder="请输入用户名" />
+                        <input type="text" className="w-full rounded-md border px-3 py-2" placeholder="请输入用户名" />
                       </div>
                       <div className="space-y-2">
                         <label className="text-sm font-medium">密码</label>
                         <input
                           type="password"
-                          className="w-full px-3 py-2 border rounded-md"
+                          className="w-full rounded-md border px-3 py-2"
                           placeholder="请输入密码"
                         />
                       </div>
@@ -234,7 +234,7 @@ export default function Demo() {
                     <div className="p-4">
                       <ul className="space-y-2">
                         {Array.from({ length: 5 }).map((_, i) => (
-                          <li key={i} className="p-3 rounded-lg bg-muted flex items-center justify-between">
+                          <li key={i} className="bg-muted flex items-center justify-between rounded-lg p-3">
                             <span>列表项 {i + 1}</span>
                             <Button variant="ghost" size="sm">
                               操作
@@ -256,7 +256,7 @@ export default function Demo() {
         </section>
 
         {/* 这里可以添加更多组件展示区域 */}
-        <div className="h-[300px] flex items-center justify-center border-2 border-dashed rounded-xl border-muted-foreground/20">
+        <div className="border-muted-foreground/20 flex h-[300px] items-center justify-center rounded-xl border-2 border-dashed">
           <p className="text-muted-foreground text-lg">更多组件即将添加...</p>
         </div>
       </div>

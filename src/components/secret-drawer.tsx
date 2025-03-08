@@ -38,12 +38,12 @@ export const SecretDrawer: FC<SecretDrawerProps> = ({ isOpen, onOpenChange }) =>
             their variant combinations.
           </DrawerDescription>
         </DrawerHeader>
-        <div className="p-4 flex flex-col items-center">
-          <p className="text-center mb-4">
+        <div className="flex flex-col items-center p-4">
+          <p className="mb-4 text-center">
             You unlocked this secret feature by clicking the settings button 5 times in a row. Click the button below to
             visit the Demo page.
           </p>
-          <div className="w-full max-w-md mx-auto">
+          <div className="mx-auto w-full max-w-md">
             <Button onClick={handleNavigateToDemo} className="w-full">
               Go to Demo Page
             </Button>

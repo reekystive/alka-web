@@ -3,89 +3,89 @@ import { FC } from 'react';
 
 const SettingsPage: FC = () => {
   return (
-    <div className="container w-full h-full overflow-auto overscroll-contain">
-      <h1 className="text-2xl font-bold p-4 md:p-6 mb-4 md:mb-6">设置</h1>
+    <div className="container h-full w-full overflow-auto overscroll-contain">
+      <h1 className="mb-4 p-4 text-2xl font-bold md:mb-6 md:p-6">设置</h1>
 
       <div className="space-y-6 px-4 md:px-6">
         <div>
-          <h2 className="text-xl font-semibold mb-4">应用设置</h2>
+          <h2 className="mb-4 text-xl font-semibold">应用设置</h2>
           <div className="space-y-4">
-            <div className="flex items-center justify-between p-4 bg-muted/30 rounded-lg">
+            <div className="bg-muted/30 flex items-center justify-between rounded-lg p-4">
               <div>
                 <div className="font-medium">主题</div>
-                <div className="text-sm text-muted-foreground">切换应用的明暗主题</div>
+                <div className="text-muted-foreground text-sm">切换应用的明暗主题</div>
               </div>
               <ThemeToggle />
             </div>
 
-            <div className="flex items-center justify-between p-4 bg-muted/30 rounded-lg">
+            <div className="bg-muted/30 flex items-center justify-between rounded-lg p-4">
               <div>
                 <div className="font-medium">语言</div>
-                <div className="text-sm text-muted-foreground">选择应用的显示语言</div>
+                <div className="text-muted-foreground text-sm">选择应用的显示语言</div>
               </div>
-              <select className="bg-background border rounded-md px-3 py-1">
+              <select className="bg-background rounded-md border px-3 py-1">
                 <option value="zh">中文</option>
                 <option value="en">English</option>
               </select>
             </div>
 
-            <div className="flex items-center justify-between p-4 bg-muted/30 rounded-lg">
+            <div className="bg-muted/30 flex items-center justify-between rounded-lg p-4">
               <div>
                 <div className="font-medium">通知</div>
-                <div className="text-sm text-muted-foreground">管理应用的通知设置</div>
+                <div className="text-muted-foreground text-sm">管理应用的通知设置</div>
               </div>
-              <div className="relative inline-flex h-6 w-11 items-center rounded-full bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background">
-                <span className="inline-block h-5 w-5 translate-x-1 rounded-full bg-background transition-transform" />
+              <div className="bg-muted focus-visible:ring-ring focus-visible:ring-offset-background relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none">
+                <span className="bg-background inline-block h-5 w-5 translate-x-1 rounded-full transition-transform" />
               </div>
             </div>
           </div>
         </div>
 
         <div>
-          <h2 className="text-xl font-semibold mb-4">个人信息</h2>
+          <h2 className="mb-4 text-xl font-semibold">个人信息</h2>
           <div className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div>
-                <label className="block text-sm font-medium mb-1">姓名</label>
+                <label className="mb-1 block text-sm font-medium">姓名</label>
                 <input
                   type="text"
-                  className="w-full px-3 py-2 border rounded-md bg-background"
+                  className="bg-background w-full rounded-md border px-3 py-2"
                   placeholder="请输入姓名"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">年龄</label>
+                <label className="mb-1 block text-sm font-medium">年龄</label>
                 <input
                   type="number"
-                  className="w-full px-3 py-2 border rounded-md bg-background"
+                  className="bg-background w-full rounded-md border px-3 py-2"
                   placeholder="请输入年龄"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">身高 (cm)</label>
+                <label className="mb-1 block text-sm font-medium">身高 (cm)</label>
                 <input
                   type="number"
-                  className="w-full px-3 py-2 border rounded-md bg-background"
+                  className="bg-background w-full rounded-md border px-3 py-2"
                   placeholder="请输入身高"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">体重 (kg)</label>
+                <label className="mb-1 block text-sm font-medium">体重 (kg)</label>
                 <input
                   type="number"
-                  className="w-full px-3 py-2 border rounded-md bg-background"
+                  className="bg-background w-full rounded-md border px-3 py-2"
                   placeholder="请输入体重"
                 />
               </div>
             </div>
-            <button className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:opacity-90 transition-opacity">
+            <button className="bg-primary text-primary-foreground rounded-md px-4 py-2 transition-opacity hover:opacity-90">
               保存设置
             </button>
           </div>
         </div>
       </div>
 
-      <div className="w-full h-4 md:h-6"></div>
+      <div className="h-4 w-full md:h-6"></div>
     </div>
   );
 };
