@@ -28,17 +28,17 @@ export const ThemeToggle: FC = () => {
           {mounted ? (
             <>
               <Sun
-                className={cn('h-[1.2rem] w-[1.2rem] absolute opacity-0', {
+                className={cn('absolute h-[1.2rem] w-[1.2rem] opacity-0', {
                   'opacity-100': theme === 'light',
                 })}
               />
               <Moon
-                className={cn('h-[1.2rem] w-[1.2rem] absolute opacity-0', {
+                className={cn('absolute h-[1.2rem] w-[1.2rem] opacity-0', {
                   'opacity-100': theme === 'dark',
                 })}
               />
               <Laptop
-                className={cn('h-[1.2rem] w-[1.2rem] absolute opacity-0', {
+                className={cn('absolute h-[1.2rem] w-[1.2rem] opacity-0', {
                   'opacity-100': theme === 'system',
                 })}
               />

@@ -72,7 +72,7 @@ const NavTab: FC<NavTabProps> = ({ tab, variant, pathname, onTabItemClick }) => 
         href={tab.path}
         onClick={handleClick}
         className={cn(
-          'flex items-center gap-3 px-4 py-3 rounded-md transition-colors',
+          'flex items-center gap-3 rounded-md px-4 py-3 transition-colors',
           'text-sidebar-foreground opacity-50',
           { 'hover:opacity-80': !isActive() },
           { 'bg-sidebar-accent opacity-100 hover:opacity-100': isActive() }
@@ -90,12 +90,12 @@ const NavTab: FC<NavTabProps> = ({ tab, variant, pathname, onTabItemClick }) => 
       onClick={handleClick}
       className={cn(
         'text-sidebar-foreground opacity-40 hover:opacity-80',
-        'transition-colors text-xs',
+        'text-xs transition-colors',
         'pb-[env(safe-area-inset-bottom)]',
         { 'opacity-100': isActive() }
       )}
     >
-      <div className="w-full h-full flex flex-col items-center justify-center">
+      <div className="flex h-full w-full flex-col items-center justify-center">
         {tab.icon}
         <span className="mt-1">{tab.label}</span>
       </div>
@@ -117,22 +117,22 @@ interface DesktopSidebarProps {
  */
 const DesktopSidebar: FC<DesktopSidebarProps> = ({ tabs, pathname, onTabItemClick }) => {
   return (
-    <nav className="hidden md:flex flex-col w-56 h-full border-r bg-sidebar shrink-0 grow-0 pl-[env(safe-area-inset-left)]">
-      <div className="px-5 py-4 flex flex-row items-center gap-2">
+    <nav className="bg-sidebar hidden h-full w-56 shrink-0 grow-0 flex-col border-r pl-[env(safe-area-inset-left)] md:flex">
+      <div className="flex flex-row items-center gap-2 px-5 py-4">
         <Beef className="size-6" />
-        <h1 className="text-xl font-semibold text-sidebar-foreground">EatWise</h1>
+        <h1 className="text-sidebar-foreground text-xl font-semibold">EatWise</h1>
       </div>
-      <hr className="h-[1px] bg-sidebar-accent" />
-      <div className="flex flex-col flex-1 p-2 gap-2 overflow-y-auto">
+      <hr className="bg-sidebar-accent h-[1px]" />
+      <div className="flex flex-1 flex-col gap-2 overflow-y-auto p-2">
         {tabs.map((tab) => (
           <NavTab key={tab.id} tab={tab} pathname={pathname} variant="desktop" onTabItemClick={onTabItemClick} />
         ))}
       </div>
-      <div className="px-5 py-4 flex flex-row items-center gap-2">
-        <div className="rounded-full bg-sidebar-accent p-2">
+      <div className="flex flex-row items-center gap-2 px-5 py-4">
+        <div className="bg-sidebar-accent rounded-full p-2">
           <User className="size-5" />
         </div>
-        <div className="text-sm text-sidebar-foreground">John Doe</div>
+        <div className="text-sidebar-foreground text-sm">John Doe</div>
       </div>
     </nav>
   );
@@ -152,9 +152,9 @@ interface MobileNavBarProps {
  */
 const MobileNavBar: FC<MobileNavBarProps> = ({ tabs, pathname, onTabItemClick }) => {
   return (
-    <nav className="fixed md:hidden h-[calc(56px+env(safe-area-inset-bottom))] border-t-[1px] box-content bg-sidebar bottom-0 left-0 right-0 touch-none shrink-0 grow-0">
+    <nav className="bg-sidebar fixed right-0 bottom-0 left-0 box-content h-[calc(56px+env(safe-area-inset-bottom))] shrink-0 grow-0 touch-none border-t-[1px] md:hidden">
       <div
-        className={`h-full w-full grid items-stretch justify-center`}
+        className={`grid h-full w-full items-stretch justify-center`}
         style={useMemo(() => ({ gridTemplateColumns: `repeat(${tabs.length}, 1fr)` }), [tabs.length])}
       >
         {tabs.map((tab) => (
@@ -170,7 +170,7 @@ const MobileNavBar: FC<MobileNavBarProps> = ({ tabs, pathname, onTabItemClick })
  */
 const MobileNavBarPlaceholder: FC = () => {
   return (
-    <div className="md:hidden h-[calc(56px+env(safe-area-inset-bottom))] border-t-[1px] box-content invisible shrink-0 grow-0" />
+    <div className="invisible box-content h-[calc(56px+env(safe-area-inset-bottom))] shrink-0 grow-0 border-t-[1px] md:hidden" />
   );
 };
 
@@ -218,12 +218,12 @@ export const AppLayout: FC<AppLayoutProps> = ({ children }) => {
 
   return (
     <div
-      className="flex flex-col md:flex-row h-full w-full overflow-clip relative bg-background"
+      className="bg-background relative flex h-full w-full flex-col overflow-clip md:flex-row"
       data-vaul-drawer-wrapper
     >
       <DesktopSidebar tabs={tabs} pathname={pathname} onTabItemClick={handleClick} />
-      <main className="flex-1 flex flex-col h-full overflow-clip min-w-0">
-        <div className="flex-1 w-full flex flex-col justify-start items-center min-h-0 pr-[env(safe-area-inset-right)] pl-[env(safe-area-inset-left)] md:pl-0">
+      <main className="flex h-full min-w-0 flex-1 flex-col overflow-clip">
+        <div className="flex min-h-0 w-full flex-1 flex-col items-center justify-start pr-[env(safe-area-inset-right)] pl-[env(safe-area-inset-left)] md:pl-0">
           {children}
         </div>
         <MobileNavBarPlaceholder />
