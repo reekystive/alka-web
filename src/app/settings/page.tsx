@@ -7,7 +7,7 @@ const SettingsPage: FC = () => {
       <h1 className="text-2xl font-bold p-4 md:p-6 mb-4 md:mb-6">设置</h1>
 
       <div className="space-y-6 px-4 md:px-6">
-        <div className="bg-card rounded-lg shadow-sm">
+        <div>
           <h2 className="text-xl font-semibold mb-4">应用设置</h2>
           <div className="space-y-4">
             <div className="flex items-center justify-between p-4 bg-muted/30 rounded-lg">
@@ -41,7 +41,7 @@ const SettingsPage: FC = () => {
           </div>
         </div>
 
-        <div className="bg-card rounded-lg shadow-sm">
+        <div>
           <h2 className="text-xl font-semibold mb-4">个人信息</h2>
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
