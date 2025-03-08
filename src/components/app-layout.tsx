@@ -117,7 +117,7 @@ interface DesktopSidebarProps {
  */
 const DesktopSidebar: FC<DesktopSidebarProps> = ({ tabs, pathname, onTabItemClick }) => {
   return (
-    <nav className="hidden md:flex flex-col w-56 h-full border-r bg-sidebar shrink-0 grow-0">
+    <nav className="hidden md:flex flex-col w-56 h-full border-r bg-sidebar shrink-0 grow-0 pl-[env(safe-area-inset-left)]">
       <div className="px-5 py-4 flex flex-row items-center gap-2">
         <Beef className="size-6" />
         <h1 className="text-xl font-semibold text-sidebar-foreground">EatWise</h1>
@@ -223,7 +223,9 @@ export const AppLayout: FC<AppLayoutProps> = ({ children }) => {
     >
       <DesktopSidebar tabs={tabs} pathname={pathname} onTabItemClick={handleClick} />
       <main className="flex-1 flex flex-col h-full overflow-clip min-w-0">
-        <div className="flex-1 w-full flex flex-col justify-start items-center min-h-0">{children}</div>
+        <div className="flex-1 w-full flex flex-col justify-start items-center min-h-0 pr-[env(safe-area-inset-right)] pl-[env(safe-area-inset-left)] md:pl-0">
+          {children}
+        </div>
         <MobileNavBarPlaceholder />
       </main>
       <MobileNavBar tabs={tabs} pathname={pathname} onTabItemClick={handleClick} />
