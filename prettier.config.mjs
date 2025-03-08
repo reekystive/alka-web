@@ -5,7 +5,8 @@ const prettierConfig = {
   trailingComma: 'es5',
   printWidth: 120,
   tabWidth: 2,
-  plugins: ['prettier-plugin-tailwindcss', 'prettier-plugin-sort-imports'],
+  // tailwind plugin must be the last one
+  plugins: ['prettier-plugin-sort-imports', 'prettier-plugin-tailwindcss'],
 };
 
 export default prettierConfig;
