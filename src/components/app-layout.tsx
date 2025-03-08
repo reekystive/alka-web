@@ -14,7 +14,9 @@
  */
 
 import { Beef, Calendar, Compass, History, Settings, User } from 'lucide-react';
-import { FC, ReactNode, useMemo } from 'react';
+import { FC, MouseEventHandler, ReactNode, useMemo } from 'react';
+import { SecretDrawer } from '@/components/secret-drawer';
+import { useSecretDemo } from '@/hooks/use-secret-demo';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/utils/component';
 import Link from 'next/link';
@@ -40,12 +42,13 @@ interface NavTabProps {
   tab: TabItem;
   variant: 'desktop' | 'mobile';
   pathname: string;
+  onTabItemClick?: () => void;
 }
 
 /**
  * NavTab component renders a single navigation tab
  */
-const NavTab: FC<NavTabProps> = ({ tab, variant, pathname }) => {
+const NavTab: FC<NavTabProps> = ({ tab, variant, pathname, onTabItemClick }) => {
   /**
    * Determines if a navigation path is currently active
    */
@@ -55,10 +58,19 @@ const NavTab: FC<NavTabProps> = ({ tab, variant, pathname }) => {
     return false;
   };
 
+  // Handle click event, trigger onTabItemClick if it's the settings tab
+  const handleClick: MouseEventHandler<HTMLAnchorElement> = () => {
+    if (tab.id === 'settings' && onTabItemClick) {
+      // Call onTabItemClick to handle consecutive click logic
+      onTabItemClick();
+    }
+  };
+
   if (variant === 'desktop') {
     return (
       <Link
         href={tab.path}
+        onClick={handleClick}
         className={cn(
           'flex items-center gap-3 px-4 py-3 rounded-md transition-colors',
           'text-sidebar-foreground opacity-50',
@@ -75,6 +87,7 @@ const NavTab: FC<NavTabProps> = ({ tab, variant, pathname }) => {
   return (
     <Link
       href={tab.path}
+      onClick={handleClick}
       className={cn(
         'text-sidebar-foreground opacity-40 hover:opacity-80',
         'transition-colors text-xs',
@@ -96,12 +109,13 @@ const NavTab: FC<NavTabProps> = ({ tab, variant, pathname }) => {
 interface DesktopSidebarProps {
   tabs: TabItem[];
   pathname: string;
+  onTabItemClick?: () => void;
 }
 
 /**
  * DesktopSidebar component renders the sidebar navigation for desktop view
  */
-const DesktopSidebar: FC<DesktopSidebarProps> = ({ tabs, pathname }) => {
+const DesktopSidebar: FC<DesktopSidebarProps> = ({ tabs, pathname, onTabItemClick }) => {
   return (
     <nav className="hidden md:flex flex-col w-56 h-full border-r bg-sidebar shrink-0 grow-0">
       <div className="px-5 py-4 flex flex-row items-center gap-2">
@@ -111,7 +125,7 @@ const DesktopSidebar: FC<DesktopSidebarProps> = ({ tabs, pathname }) => {
       <hr className="h-[1px] bg-sidebar-accent" />
       <div className="flex flex-col flex-1 p-2 gap-2 overflow-y-auto">
         {tabs.map((tab) => (
-          <NavTab key={tab.id} tab={tab} pathname={pathname} variant="desktop" />
+          <NavTab key={tab.id} tab={tab} pathname={pathname} variant="desktop" onTabItemClick={onTabItemClick} />
         ))}
       </div>
       <div className="px-5 py-4 flex flex-row items-center gap-2">
@@ -130,12 +144,13 @@ const DesktopSidebar: FC<DesktopSidebarProps> = ({ tabs, pathname }) => {
 interface MobileNavBarProps {
   tabs: TabItem[];
   pathname: string;
+  onTabItemClick?: () => void;
 }
 
 /**
  * MobileNavBar component renders the bottom navigation bar for mobile view
  */
-const MobileNavBar: FC<MobileNavBarProps> = ({ tabs, pathname }) => {
+const MobileNavBar: FC<MobileNavBarProps> = ({ tabs, pathname, onTabItemClick }) => {
   return (
     <nav className="fixed md:hidden h-[calc(56px+env(safe-area-inset-bottom))] border-t-[1px] box-content bg-sidebar bottom-0 left-0 right-0 touch-none shrink-0 grow-0">
       <div
@@ -143,7 +158,7 @@ const MobileNavBar: FC<MobileNavBarProps> = ({ tabs, pathname }) => {
         style={useMemo(() => ({ gridTemplateColumns: `repeat(${tabs.length}, 1fr)` }), [tabs.length])}
       >
         {tabs.map((tab) => (
-          <NavTab key={tab.id} tab={tab} pathname={pathname} variant="mobile" />
+          <NavTab key={tab.id} tab={tab} pathname={pathname} variant="mobile" onTabItemClick={onTabItemClick} />
         ))}
       </div>
     </nav>
@@ -172,6 +187,7 @@ interface AppLayoutProps {
  */
 export const AppLayout: FC<AppLayoutProps> = ({ children }) => {
   const pathname = usePathname();
+  const { handleClick, isDrawerOpen, onDrawerOpenChange } = useSecretDemo();
 
   const tabs: TabItem[] = [
     {
@@ -202,12 +218,15 @@ export const AppLayout: FC<AppLayoutProps> = ({ children }) => {
 
   return (
     <div className="flex flex-col md:flex-row h-full w-full overflow-clip relative">
-      <DesktopSidebar tabs={tabs} pathname={pathname} />
+      <DesktopSidebar tabs={tabs} pathname={pathname} onTabItemClick={handleClick} />
       <main className="flex-1 flex flex-col h-full overflow-clip min-w-0">
         <div className="flex-1 w-full flex flex-col justify-center items-center min-h-0">{children}</div>
         <MobileNavBarPlaceholder />
       </main>
-      <MobileNavBar tabs={tabs} pathname={pathname} />
+      <MobileNavBar tabs={tabs} pathname={pathname} onTabItemClick={handleClick} />
+
+      {/* Secret drawer */}
+      <SecretDrawer isOpen={isDrawerOpen} onOpenChange={onDrawerOpenChange} />
     </div>
   );
 };
