@@ -5,7 +5,7 @@ import { ComponentProps, FC } from 'react';
 import { cn } from '@/utils/component';
 
 const Drawer: FC<ComponentProps<typeof DrawerPrimitive.Root>> = (props) => {
-  return <DrawerPrimitive.Root data-slot="drawer" {...props} />;
+  return <DrawerPrimitive.Root data-slot="drawer" shouldScaleBackground={true} {...props} />;
 };
 
 const DrawerTrigger: FC<ComponentProps<typeof DrawerPrimitive.Trigger>> = (props) => {
