@@ -19,11 +19,9 @@ export const useThemeEffect = () => {
   const { resolvedTheme } = useTheme();
 
   useEffect(() => {
-    console.log('resolvedTheme 1', resolvedTheme);
     if (!resolvedTheme || resolvedTheme === 'system') {
       return;
     }
-    console.log('resolvedTheme 2', resolvedTheme);
     const theme = getTheme(resolvedTheme);
     setDocumentTheme(theme);
   }, [resolvedTheme]);
