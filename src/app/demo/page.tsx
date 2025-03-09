@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Drawer,
   DrawerTrigger,
@@ -7,17 +9,66 @@ import {
   DrawerTitle,
   DrawerDescription,
 } from '@/components/ui/drawer';
+import { useGlobalDialogExample } from '@/app/demo/hooks/use-global-dialog-example';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export default function Demo() {
+  const { showConfirmDialog, showAlertDialog, showCustomDialog } = useGlobalDialogExample();
+
+  const handleShowConfirmDialog = () => {
+    showConfirmDialog('确定要执行此操作吗？', () => {
+      console.log('用户点击了确认');
+    });
+  };
+
+  const handleShowAlertDialog = () => {
+    showAlertDialog('操作已完成！');
+  };
+
+  const handleShowCustomDialog = () => {
+    showCustomDialog(
+      '自定义对话框',
+      <div className="space-y-4">
+        <p>这是一个自定义内容的对话框示例。</p>
+        <div className="bg-muted rounded-md p-4">
+          <p className="font-medium">您可以在这里放置任何 React 组件</p>
+          <p className="text-muted-foreground text-sm">包括表单、图片、列表等</p>
+        </div>
+      </div>,
+      {
+        actionText: '我知道了',
+        showCancel: true,
+      }
+    );
+  };
+
   return (
     <div className="container h-full w-full overflow-auto overscroll-contain">
+      <div className="h-6 w-full md:h-0"></div>
+
       <div className="container mx-auto max-w-[1200px] space-y-16 px-4 py-16">
         {/* 页面标题 */}
         <div className="space-y-3">
           <h1 className="text-4xl font-bold tracking-tight">组件展示 </h1>
           <p className="text-muted-foreground text-lg">这里展示了所有可用的组件及其变体组合</p>
         </div>
+
+        {/* 功能预览 */}
+        <section className="space-y-8">
+          <div className="space-y-3 border-b pb-6">
+            <h2 className="text-2xl font-semibold tracking-tight">功能预览</h2>
+            <p className="text-muted-foreground text-lg">应用的主要功能预览</p>
+          </div>
+
+          <div className="space-y-4">
+            <div className="flex flex-wrap items-center gap-6">
+              <Link href="/demo/capture">
+                <Button>拍摄食物功能预览</Button>
+              </Link>
+            </div>
+          </div>
+        </section>
 
         {/* 按钮组件 */}
         <section className="space-y-8">
@@ -255,11 +306,40 @@ export default function Demo() {
           </div>
         </section>
 
+        <div className="bg-muted/30 rounded-lg p-4">
+          <div className="mb-3">
+            <div className="font-medium">全局对话框示例</div>
+            <div className="text-muted-foreground text-sm">点击下方按钮测试不同类型的对话框</div>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={handleShowConfirmDialog}
+              className="bg-primary text-primary-foreground rounded-md px-3 py-1.5 text-sm transition-opacity hover:opacity-90"
+            >
+              确认对话框
+            </button>
+            <button
+              onClick={handleShowAlertDialog}
+              className="bg-primary text-primary-foreground rounded-md px-3 py-1.5 text-sm transition-opacity hover:opacity-90"
+            >
+              提示对话框
+            </button>
+            <button
+              onClick={handleShowCustomDialog}
+              className="bg-primary text-primary-foreground rounded-md px-3 py-1.5 text-sm transition-opacity hover:opacity-90"
+            >
+              自定义对话框
+            </button>
+          </div>
+        </div>
+
         {/* 这里可以添加更多组件展示区域 */}
         <div className="border-muted-foreground/20 flex h-[300px] items-center justify-center rounded-xl border-2 border-dashed">
           <p className="text-muted-foreground text-lg">更多组件即将添加...</p>
         </div>
       </div>
+
+      <div className="h-24 w-full md:h-12"></div>
     </div>
   );
 }

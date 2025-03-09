@@ -8,6 +8,7 @@
  * - A responsive layout with sidebar for desktop and bottom navigation for mobile
  * - Navigation tabs for different sections of the application
  * - Active state highlighting for the current route
+ * - Global Dialog provider for showing dialogs from anywhere in the app
  *
  * The layout adapts to different screen sizes, showing a sidebar on desktop
  * and a bottom navigation bar on mobile devices.
@@ -15,6 +16,8 @@
 
 import { Beef, Calendar, Compass, History, Settings, User } from 'lucide-react';
 import { FC, MouseEventHandler, ReactNode, useMemo } from 'react';
+import { GlobalDialog } from '@/components/ui/global-dialog';
+import { DialogProvider } from '@/contexts/dialog-context';
 import { SecretDrawer } from '@/components/secret-drawer';
 import { useSecretDemo } from '@/hooks/use-secret-demo';
 import { usePathname } from 'next/navigation';
@@ -176,7 +179,7 @@ const MobileNavBarPlaceholder: FC = () => {
 
 const ZoomInWrapper: FC<{ children: ReactNode }> = ({ children }) => {
   return (
-    <div className="animate-in fade-in-70 zoom-in-[0.997] md:zoom-in-[0.998] duration-100 cubic-bezier(0.1, 1, 0.3, 1) motion-reduce:animate-none w-full h-full">
+    <div className="animate-in fade-in-60 zoom-in-[0.995] md:zoom-in-[0.998] cubic-bezier(0.1, 1, 0.3, 1) h-full w-full duration-150 motion-reduce:animate-none">
       {children}
     </div>
   );
@@ -225,21 +228,26 @@ export const AppLayout: FC<AppLayoutProps> = ({ children }) => {
   ];
 
   return (
-    <div
-      className="bg-background relative flex h-full w-full flex-col overflow-clip md:flex-row"
-      data-vaul-drawer-wrapper
-    >
-      <DesktopSidebar tabs={tabs} pathname={pathname} onTabItemClick={handleClick} />
-      <main className="flex h-full min-w-0 flex-1 flex-col overflow-clip">
-        <div className="flex min-h-0 w-full flex-1 flex-col items-center justify-start pr-[env(safe-area-inset-right)] pl-[env(safe-area-inset-left)] md:pl-0">
-          <ZoomInWrapper key={pathname}>{children}</ZoomInWrapper>
-        </div>
-        <MobileNavBarPlaceholder />
-      </main>
-      <MobileNavBar tabs={tabs} pathname={pathname} onTabItemClick={handleClick} />
+    <DialogProvider>
+      <div
+        className="bg-background relative flex h-full w-full flex-col overflow-clip md:flex-row"
+        data-vaul-drawer-wrapper
+      >
+        <DesktopSidebar tabs={tabs} pathname={pathname} onTabItemClick={handleClick} />
+        <main className="flex h-full min-w-0 flex-1 flex-col overflow-clip">
+          <div className="flex min-h-0 w-full flex-1 flex-col items-center justify-start pr-[env(safe-area-inset-right)] pl-[env(safe-area-inset-left)] md:pl-0">
+            <ZoomInWrapper key={pathname}>{children}</ZoomInWrapper>
+          </div>
+          <MobileNavBarPlaceholder />
+        </main>
+        <MobileNavBar tabs={tabs} pathname={pathname} onTabItemClick={handleClick} />
 
-      {/* Secret drawer */}
-      <SecretDrawer isOpen={isDrawerOpen} onOpenChange={onDrawerOpenChange} />
-    </div>
+        {/* Secret drawer */}
+        <SecretDrawer isOpen={isDrawerOpen} onOpenChange={onDrawerOpenChange} />
+
+        {/* Global Dialog */}
+        <GlobalDialog />
+      </div>
+    </DialogProvider>
   );
 };
